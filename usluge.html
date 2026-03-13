@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usluge – SB Digital Advertising</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue: #1d4ed8; --blue-light: #3b82f6; --blue-dark: #1e3a8a;
+      --bg: #f5f8ff; --bg-white: #ffffff; --bg-tint: #eef3ff;
+      --text: #0f172a; --text2: #334155; --muted: #64748b;
+      --border: #e2e8f0; --border-blue: #bfdbfe;
+      --radius: 14px;
+      --shadow: 0 4px 24px rgba(29,78,216,.09);
+      --shadow-lg: 0 16px 56px rgba(29,78,216,.16);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+    /* ── LOGO ── */
+    .logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-mark { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #1e3a8a, #3b82f6); display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 1.05rem; letter-spacing: -.5px; flex-shrink: 0; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1; }
+    .logo-name { font-size: .87rem; font-weight: 800; color: #1e3a8a; letter-spacing: -.2px; margin-bottom: 2px; }
+    .logo-tag  { font-size: .58rem; color: #64748b; letter-spacing: 2.5px; text-transform: uppercase; }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 5%; height: 70px; background: rgba(255,255,255,.93); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-links { display: flex; gap: 4px; list-style: none; align-items: center; }
+    .nav-links a { color: var(--text2); text-decoration: none; font-size: .9rem; font-weight: 500; padding: 8px 18px; border-radius: 8px; transition: color .2s, background .2s; }
+    .nav-links a:hover { color: var(--blue); background: var(--bg-tint); }
+    .nav-links a.active { color: var(--blue); background: var(--bg-tint); font-weight: 700; }
+    .nav-right { display: flex; justify-content: flex-end; }
+    .nav-cta { background: var(--blue); color: #fff; border: none; padding: 10px 24px; border-radius: 50px; font-size: .87rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 16px rgba(29,78,216,.28); white-space: nowrap; text-decoration: none; transition: background .2s, transform .15s; }
+    .nav-cta:hover { background: var(--blue-dark); transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; margin-left: auto; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; }
+    .mobile-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; background: var(--bg-white); border-bottom: 1px solid var(--border); padding: 12px 5% 20px; z-index: 99; flex-direction: column; gap: 2px; box-shadow: 0 8px 24px rgba(0,0,0,.06); }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--text2); text-decoration: none; font-size: .98rem; padding: 13px 16px; border-radius: 8px; font-weight: 500; transition: background .2s; }
+    .mobile-menu a:hover { background: var(--bg-tint); color: var(--blue); }
+
+    /* ── PAGE HEADER ── */
+    .page-header { padding: 130px 7% 80px; background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 60%, #60a5fa 100%); color: white; position: relative; overflow: hidden; }
+    .page-header::before { content: ''; position: absolute; top: -100px; right: -80px; width: 420px; height: 420px; border-radius: 50%; background: rgba(255,255,255,.05); }
+    .page-header::after  { content: ''; position: absolute; bottom: -100px; left: 5%; width: 320px; height: 320px; border-radius: 50%; background: rgba(255,255,255,.04); }
+    .breadcrumb { font-size: .8rem; display: flex; align-items: center; gap: 8px; margin-bottom: 20px; position: relative; z-index: 1; opacity: .75; }
+    .breadcrumb a { color: inherit; text-decoration: none; }
+    .breadcrumb a:hover { opacity: 1; }
+    .page-header h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900; letter-spacing: -1.5px; line-height: 1.1; position: relative; z-index: 1; }
+    .page-header .ph-sub { font-size: 1.08rem; opacity: .82; max-width: 540px; margin-top: 16px; line-height: 1.75; position: relative; z-index: 1; }
+
+    /* ── SECTION ── */
+    section { padding: 88px 7%; }
+    .section-tag { display: inline-block; color: var(--blue); font-size: .74rem; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 14px; font-weight: 700; background: var(--bg-tint); padding: 5px 14px; border-radius: 50px; border: 1px solid var(--border-blue); }
+    .section-title { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; line-height: 1.15; letter-spacing: -.5px; color: var(--text); }
+    .section-sub { color: var(--muted); margin-top: 14px; font-size: 1.02rem; line-height: 1.75; max-width: 620px; }
+
+    /* ── SERVICE MAIN CARD ── */
+    #usluga { background: var(--bg-white); }
+    .service-main {
+      margin-top: 52px; border-radius: 24px; overflow: hidden;
+      box-shadow: var(--shadow-lg); border: 1px solid var(--border);
+    }
+    .service-top {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 60%, #60a5fa 100%);
+      padding: 60px 56px; color: white; position: relative; overflow: hidden;
+    }
+    .service-top::before { content: ''; position: absolute; top: -60px; right: -60px; width: 320px; height: 320px; border-radius: 50%; background: rgba(255,255,255,.06); }
+    .service-top::after  { content: ''; position: absolute; bottom: -80px; right: 15%; width: 220px; height: 220px; border-radius: 50%; background: rgba(255,255,255,.08); }
+    .service-icon { font-size: 2.8rem; display: block; margin-bottom: 22px; position: relative; z-index: 1; }
+    .service-top h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 900; letter-spacing: -.5px; margin-bottom: 16px; position: relative; z-index: 1; }
+    .service-top p { font-size: 1.05rem; opacity: .85; max-width: 580px; line-height: 1.75; position: relative; z-index: 1; }
+    .service-feats {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      background: var(--bg-white);
+    }
+    .sf {
+      padding: 32px 28px; border-top: 1px solid var(--border); border-right: 1px solid var(--border);
+      transition: background .2s;
+    }
+    .sf:last-child { border-right: none; }
+    .sf:hover { background: var(--bg-tint); }
+    .sf-icon { font-size: 1.6rem; margin-bottom: 14px; }
+    .sf h4 { font-weight: 700; font-size: .97rem; margin-bottom: 8px; color: var(--text); }
+    .sf p { color: var(--muted); font-size: .86rem; line-height: 1.6; }
+
+    /* ── INCLUDED ── */
+    #ukljuceno { background: var(--bg); }
+    .included-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 48px; }
+    .included-item {
+      display: flex; gap: 14px; align-items: flex-start;
+      background: var(--bg-white); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 22px 24px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .included-item:hover { border-color: var(--border-blue); box-shadow: var(--shadow); }
+    .inc-check {
+      width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+      background: var(--bg-tint); border: 1px solid var(--border-blue);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .inc-check svg { width: 15px; height: 15px; stroke: var(--blue); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .included-item h4 { font-weight: 700; font-size: .95rem; margin-bottom: 4px; color: var(--text); }
+    .included-item p { color: var(--muted); font-size: .85rem; line-height: 1.55; }
+
+    /* ── PROCESS ── */
+    #proces { background: var(--bg-white); }
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; margin-top: 52px;
+      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+    }
+    .step {
+      padding: 36px 28px; border-right: 1px solid var(--border);
+      transition: background .2s; position: relative;
+    }
+    .step:last-child { border-right: none; }
+    .step:hover { background: var(--bg-tint); }
+    .step-num { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, var(--blue-dark), var(--blue-light)); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: .95rem; color: white; margin-bottom: 18px; }
+    .step h4 { font-weight: 700; font-size: .97rem; margin-bottom: 8px; color: var(--text); }
+    .step p { color: var(--muted); font-size: .86rem; line-height: 1.6; }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      margin: 0 7% 88px; background: linear-gradient(135deg, var(--blue-dark), var(--blue), #60a5fa);
+      border-radius: 24px; padding: 64px 56px; color: white; text-align: center;
+      position: relative; overflow: hidden; box-shadow: var(--shadow-lg);
+    }
+    .cta-banner::before { content: ''; position: absolute; top: -80px; right: -80px; width: 300px; height: 300px; border-radius: 50%; background: rgba(255,255,255,.07); }
+    .cta-banner h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 900; letter-spacing: -.5px; position: relative; z-index: 1; }
+    .cta-banner p { opacity: .82; margin: 14px auto 36px; max-width: 480px; font-size: 1.02rem; line-height: 1.7; position: relative; z-index: 1; }
+    .btn-white { display: inline-flex; align-items: center; background: white; color: var(--blue-dark); border: none; padding: 14px 36px; border-radius: 50px; font-size: .97rem; font-weight: 700; text-decoration: none; cursor: pointer; transition: transform .2s, box-shadow .2s; box-shadow: 0 8px 28px rgba(0,0,0,.15); position: relative; z-index: 1; }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(0,0,0,.22); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--text); color: rgba(255,255,255,.7); padding: 56px 7% 32px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .footer-brand-desc { font-size: .88rem; max-width: 260px; line-height: 1.7; margin-top: 14px; color: rgba(255,255,255,.5); }
+    .footer-col h5 { font-size: .72rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 16px; font-weight: 600; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { color: rgba(255,255,255,.6); text-decoration: none; font-size: .88rem; transition: color .2s; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; padding-top: 28px; font-size: .8rem; color: rgba(255,255,255,.35); }
+    .footer-socials { display: flex; gap: 10px; }
+    .fsoc { width: 40px; height: 40px; border-radius: 10px; border: 1px solid rgba(255,255,255,.14); display: flex; align-items: center; justify-content: center; text-decoration: none; color: rgba(255,255,255,.6); transition: border-color .2s, background .2s, color .2s; }
+    .fsoc:hover { border-color: var(--blue-light); background: rgba(59,130,246,.15); color: white; }
+    .fsoc svg { width: 17px; height: 17px; fill: currentColor; }
+    .footer-logo-mark { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #3b82f6, #60a5fa); display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 1.05rem; letter-spacing: -.5px; }
+    .footer-logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .footer-logo-name { font-size: .87rem; font-weight: 800; color: rgba(255,255,255,.85); letter-spacing: -.2px; margin-bottom: 2px; display: block; }
+    .footer-logo-tag  { font-size: .58rem; color: rgba(255,255,255,.35); letter-spacing: 2.5px; text-transform: uppercase; display: block; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .service-feats { grid-template-columns: 1fr 1fr; }
+      .sf:nth-child(2) { border-right: none; }
+      .sf:nth-child(3), .sf:nth-child(4) { border-top: 1px solid var(--border); }
+      .sf:nth-child(4) { border-right: none; }
+      .included-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .step:nth-child(2) { border-right: none; }
+      .step:nth-child(3) { border-top: 1px solid var(--border); border-right: 1px solid var(--border); }
+      .step:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
+      .cta-banner { padding: 48px 32px; }
+    }
+    @media (max-width: 768px) {
+      nav { grid-template-columns: 1fr auto; }
+      .nav-links, .nav-right { display: none; }
+      .hamburger { display: flex; }
+      .service-top { padding: 40px 28px; }
+      .service-feats { grid-template-columns: 1fr; }
+      .sf { border-right: none; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .step { border-right: none; border-bottom: 1px solid var(--border); }
+      .step:last-child { border-bottom: none; }
+      .cta-banner { margin: 0 5% 64px; padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div>
+    <a href="main.html" class="logo-link">
+      <div class="logo-mark">SB</div>
+      <div class="logo-text">
+        <span class="logo-name">SB digital</span>
+        <span class="logo-tag">ADVERTISING</span>
+      </div>
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="o-nama.html">O nama</a></li>
+    <li><a href="usluge.html" class="active">Usluge</a></li>
+    <li><a href="kontakt.html">Kontakt</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="kontakt.html" class="nav-cta">Kontaktirajte nas</a>
+  </div>
+  <button class="hamburger" id="hambBtn" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="o-nama.html"  onclick="closeMenu()">O nama</a>
+  <a href="usluge.html"  onclick="closeMenu()">Usluge</a>
+  <a href="kontakt.html" onclick="closeMenu()">Kontakt</a>
+</div>
+
+<!-- ── PAGE HEADER ── -->
+<div class="page-header">
+  <div class="breadcrumb">
+    <a href="main.html">Početna</a>
+    <span>›</span>
+    <span>Usluge</span>
+  </div>
+  <h1>Naše usluge</h1>
+  <p class="ph-sub">Jedna usluga, kompletan pristup — od ideje i kreative do aktivne kampanje i mjerljivih rezultata.</p>
+</div>
+
+<!-- ── MAIN SERVICE ── -->
+<section id="usluga">
+  <div class="section-tag">Što nudimo</div>
+  <h2 class="section-title">Digitalna reklama</h2>
+  <p class="section-sub">Vodimo vaše digitalne reklamne kampanje od A do Ž — kreiramo, postavljamo, pratimo i optimiziramo.</p>
+  <div class="service-main">
+    <div class="service-top">
+      <span class="service-icon">🖥️</span>
+      <h2>Digitalno oglašavanje</h2>
+      <p>Vaša poruka dopire do pravih kupaca kroz precizno ciljane digitalne reklamne kampanje. Brinemo o svemu — od dizajna vizuala do upravljanja kampanjom i izvještavanja — tako da vi možete fokus zadržati na svom poslovanju.</p>
+    </div>
+    <div class="service-feats">
+      <div class="sf">
+        <div class="sf-icon">🎨</div>
+        <h4>Kreativni dizajn</h4>
+        <p>Profesionalni vizuali i animirani sadržaji prilagođeni vašem brendu i ciljnoj publici.</p>
+      </div>
+      <div class="sf">
+        <div class="sf-icon">📡</div>
+        <h4>Upravljanje kampanjom</h4>
+        <p>Postavljamo, pratimo i optimiziramo kampanje za maksimalni doseg i učinak.</p>
+      </div>
+      <div class="sf">
+        <div class="sf-icon">📊</div>
+        <h4>Analitika i izvještaji</h4>
+        <p>Detaljni izvještaji o dosegu, prikazima i učinkovitosti svake kampanje.</p>
+      </div>
+      <div class="sf">
+        <div class="sf-icon">💬</div>
+        <h4>Konzultacije</h4>
+        <p>Savjetujemo vas kako odabrati strategiju koja odgovara vašem cilju i budžetu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INCLUDED ── -->
+<section id="ukljuceno">
+  <div class="section-tag">Šta je uključeno</div>
+  <h2 class="section-title">Sve što dobivate uz svaku kampanju</h2>
+  <p class="section-sub">Nema skrivenih troškova niti iznenađenja — evo točno što uključuje svaka kampanja.</p>
+  <div class="included-grid">
+    <div class="included-item">
+      <div class="inc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div>
+        <h4>Uvodni razgovor i analiza</h4>
+        <p>Razgovaramo o vašim ciljevima, publici i budžetu — bez obaveza, bez troškova.</p>
+      </div>
+    </div>
+    <div class="included-item">
+      <div class="inc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div>
+        <h4>Prijedlog strategije kampanje</h4>
+        <p>Prilagođena strategija s preporukom kanala, formata i vremenskog okvira.</p>
+      </div>
+    </div>
+    <div class="included-item">
+      <div class="inc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div>
+        <h4>Dizajn reklamnih materijala</h4>
+        <p>Statični i animirani vizuali optimizirani za odabrane digitalne kanale.</p>
+      </div>
+    </div>
+    <div class="included-item">
+      <div class="inc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div>
+        <h4>Postavljanje i aktivacija kampanje</h4>
+        <p>Tehnička postava i pokretanje kampanje na odabranim platformama.</p>
+      </div>
+    </div>
+    <div class="included-item">
+      <div class="inc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div>
+        <h4>Praćenje i optimizacija</h4>
+        <p>Kontinuirano praćenje performansi i prilagodba kampanje za bolje rezultate.</p>
+      </div>
+    </div>
+    <div class="included-item">
+      <div class="inc-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <div>
+        <h4>Završni izvještaj</h4>
+        <p>Detaljni izvještaj o ostvarenim rezultatima — doseg, prikazi, učinak.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ── -->
+<section id="proces">
+  <div class="section-tag">Naš proces</div>
+  <h2 class="section-title">Od prvog razgovora do rezultata</h2>
+  <p class="section-sub">Transparentan i jasan proces — uvijek znate na čemu smo i što slijedi.</p>
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>Konzultacija</h4>
+      <p>Upoznajemo vaše poslovanje, ciljeve, ciljnu publiku i budžet. Postavljamo prava pitanja da bismo razumjeli što vam treba.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>Strategija</h4>
+      <p>Definiramo strategiju kampanje — kanali, format oglasa, trajanje i ciljanje publike. Sve prilagođeno vašim ciljevima.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>Kreativa i produkcija</h4>
+      <p>Kreiramo vizuale i sadržaje koji privlače pažnju i prenose vašu poruku jasno i upečatljivo.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h4>Lansiranje i izvještaj</h4>
+      <p>Aktiviramo kampanju, pratimo rezultate u realnom vremenu i dostavljamo vam jasne izvještaje.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<div class="cta-banner">
+  <h2>Pokrenimo vašu prvu kampanju</h2>
+  <p>Kontaktirajte nas i dogovorimo besplatni uvodni razgovor o vašim oglašivačkim potrebama.</p>
+  <a href="kontakt.html" class="btn-white">Pošaljite upit →</a>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="main.html" class="footer-logo-link">
+        <div class="footer-logo-mark">SB</div>
+        <div>
+          <span class="footer-logo-name">SB digital</span>
+          <span class="footer-logo-tag">ADVERTISING</span>
+        </div>
+      </a>
+      <p class="footer-brand-desc">Digitalno oglašavanje za lokalna i regionalna poduzeća. Ljubuški, BiH.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Navigacija</h5>
+      <ul>
+        <li><a href="o-nama.html">O nama</a></li>
+        <li><a href="usluge.html">Usluge</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Lokacija</h5>
+      <ul>
+        <li><a href="#">Ljubuški</a></li>
+        <li><a href="#">Bosna i Hercegovina</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 SB Digital Advertising. Sva prava pridržana.</span>
+    <div class="footer-socials">
+      <a class="fsoc" href="#" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a class="fsoc" href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  function closeMenu()  { document.getElementById('mobileMenu').classList.remove('open'); }
+  document.addEventListener('click', e => {
+    const m = document.getElementById('mobileMenu'), b = document.getElementById('hambBtn');
+    if (m.classList.contains('open') && !m.contains(e.target) && !b.contains(e.target)) m.classList.remove('open');
+  });
+  const io = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } }); }, { threshold: 0.08 });
+  document.querySelectorAll('.sf, .included-item, .step').forEach(el => { el.style.opacity='0'; el.style.transform='translateY(18px)'; el.style.transition='opacity .5s ease, transform .5s ease'; io.observe(el); });
+</script>
+</body>
+</html>

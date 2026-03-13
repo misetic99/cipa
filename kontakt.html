@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt – SB Digital Advertising</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue: #1d4ed8; --blue-light: #3b82f6; --blue-dark: #1e3a8a;
+      --bg: #f5f8ff; --bg-white: #ffffff; --bg-tint: #eef3ff;
+      --text: #0f172a; --text2: #334155; --muted: #64748b;
+      --border: #e2e8f0; --border-blue: #bfdbfe;
+      --radius: 14px;
+      --shadow: 0 4px 24px rgba(29,78,216,.09);
+      --shadow-lg: 0 16px 56px rgba(29,78,216,.16);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+    /* ── LOGO ── */
+    .logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-mark { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #1e3a8a, #3b82f6); display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 1.05rem; letter-spacing: -.5px; flex-shrink: 0; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1; }
+    .logo-name { font-size: .87rem; font-weight: 800; color: #1e3a8a; letter-spacing: -.2px; margin-bottom: 2px; }
+    .logo-tag  { font-size: .58rem; color: #64748b; letter-spacing: 2.5px; text-transform: uppercase; }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 5%; height: 70px; background: rgba(255,255,255,.93); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-links { display: flex; gap: 4px; list-style: none; align-items: center; }
+    .nav-links a { color: var(--text2); text-decoration: none; font-size: .9rem; font-weight: 500; padding: 8px 18px; border-radius: 8px; transition: color .2s, background .2s; }
+    .nav-links a:hover { color: var(--blue); background: var(--bg-tint); }
+    .nav-links a.active { color: var(--blue); background: var(--bg-tint); font-weight: 700; }
+    .nav-right { display: flex; justify-content: flex-end; }
+    .nav-cta { background: var(--blue); color: #fff; border: none; padding: 10px 24px; border-radius: 50px; font-size: .87rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 16px rgba(29,78,216,.28); white-space: nowrap; text-decoration: none; transition: background .2s, transform .15s; }
+    .nav-cta:hover { background: var(--blue-dark); transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; margin-left: auto; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; }
+    .mobile-menu { display: none; position: fixed; top: 70px; left: 0; right: 0; background: var(--bg-white); border-bottom: 1px solid var(--border); padding: 12px 5% 20px; z-index: 99; flex-direction: column; gap: 2px; box-shadow: 0 8px 24px rgba(0,0,0,.06); }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--text2); text-decoration: none; font-size: .98rem; padding: 13px 16px; border-radius: 8px; font-weight: 500; transition: background .2s; }
+    .mobile-menu a:hover { background: var(--bg-tint); color: var(--blue); }
+
+    /* ── PAGE HEADER ── */
+    .page-header { padding: 130px 7% 80px; background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 60%, #60a5fa 100%); color: white; position: relative; overflow: hidden; }
+    .page-header::before { content: ''; position: absolute; top: -100px; right: -80px; width: 420px; height: 420px; border-radius: 50%; background: rgba(255,255,255,.05); }
+    .page-header::after  { content: ''; position: absolute; bottom: -100px; left: 5%; width: 320px; height: 320px; border-radius: 50%; background: rgba(255,255,255,.04); }
+    .breadcrumb { font-size: .8rem; display: flex; align-items: center; gap: 8px; margin-bottom: 20px; position: relative; z-index: 1; opacity: .75; }
+    .breadcrumb a { color: inherit; text-decoration: none; }
+    .page-header h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900; letter-spacing: -1.5px; line-height: 1.1; position: relative; z-index: 1; }
+    .page-header .ph-sub { font-size: 1.08rem; opacity: .82; max-width: 540px; margin-top: 16px; line-height: 1.75; position: relative; z-index: 1; }
+
+    /* ── CONTACT SECTION ── */
+    #kontakt-section { padding: 88px 7%; background: var(--bg); }
+    .contact-layout { display: grid; grid-template-columns: 1fr 1.6fr; gap: 48px; align-items: start; }
+
+    /* sidebar */
+    .contact-sidebar { display: flex; flex-direction: column; gap: 16px; }
+    .info-card {
+      background: var(--bg-white); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px 26px;
+      box-shadow: var(--shadow);
+    }
+    .ic-label { font-size: .72rem; color: var(--blue); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 8px; }
+    .ic-value { font-size: .97rem; color: var(--text); font-weight: 600; }
+    .ic-sub   { font-size: .83rem; color: var(--muted); margin-top: 3px; }
+
+    .social-cards { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+    .social-card {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--bg-tint); border: 1px solid var(--border-blue);
+      border-radius: 10px; padding: 13px 16px;
+      text-decoration: none; color: var(--blue); font-weight: 600; font-size: .88rem;
+      transition: background .2s, border-color .2s, transform .15s;
+    }
+    .social-card:hover { background: #e0eaff; border-color: var(--blue-light); transform: translateX(3px); }
+    .social-card svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+    .social-card-label { flex: 1; }
+    .social-card-arrow { font-size: .8rem; opacity: .5; }
+
+    /* form */
+    .contact-form-wrap {
+      background: var(--bg-white); border: 1px solid var(--border);
+      border-radius: 20px; padding: 48px;
+      box-shadow: var(--shadow);
+    }
+    .contact-form-wrap h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; color: var(--text); }
+    .contact-form-wrap .form-desc { color: var(--muted); font-size: .9rem; margin-bottom: 32px; line-height: 1.6; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+    label { font-size: .8rem; color: var(--text2); font-weight: 600; letter-spacing: .3px; }
+    input, textarea {
+      background: var(--bg); border: 1.5px solid var(--border);
+      border-radius: 10px; padding: 12px 15px; color: var(--text);
+      font-size: .93rem; font-family: inherit; outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    input:focus, textarea:focus { border-color: var(--blue-light); box-shadow: 0 0 0 3px rgba(59,130,246,.11); }
+    input::placeholder, textarea::placeholder { color: #9ab; }
+    textarea { resize: vertical; min-height: 140px; }
+
+    /* hidden honeypot */
+    .form-hp { display: none; }
+
+    .form-submit {
+      margin-top: 10px; width: 100%;
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue-light));
+      color: #fff; border: none; padding: 15px;
+      border-radius: 50px; font-size: 1rem; font-weight: 700;
+      cursor: pointer; letter-spacing: .3px;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 6px 28px rgba(29,78,216,.3);
+    }
+    .form-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(29,78,216,.45); }
+    .form-submit:disabled { opacity: .7; cursor: not-allowed; transform: none; }
+
+    /* success / error messages */
+    .form-msg { display: none; margin-top: 16px; padding: 14px 18px; border-radius: 10px; font-size: .9rem; font-weight: 600; }
+    .form-msg.success { display: block; background: #f0fdf4; border: 1px solid #bbf7d0; color: #15803d; }
+    .form-msg.error   { display: block; background: #fef2f2; border: 1px solid #fecaca; color: #dc2626; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--text); color: rgba(255,255,255,.7); padding: 56px 7% 32px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .footer-brand-desc { font-size: .88rem; max-width: 260px; line-height: 1.7; margin-top: 14px; color: rgba(255,255,255,.5); }
+    .footer-col h5 { font-size: .72rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: 16px; font-weight: 600; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { color: rgba(255,255,255,.6); text-decoration: none; font-size: .88rem; transition: color .2s; }
+    .footer-col a:hover { color: white; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; padding-top: 28px; font-size: .8rem; color: rgba(255,255,255,.35); }
+    .footer-socials { display: flex; gap: 10px; }
+    .fsoc { width: 40px; height: 40px; border-radius: 10px; border: 1px solid rgba(255,255,255,.14); display: flex; align-items: center; justify-content: center; text-decoration: none; color: rgba(255,255,255,.6); transition: border-color .2s, background .2s, color .2s; }
+    .fsoc:hover { border-color: var(--blue-light); background: rgba(59,130,246,.15); color: white; }
+    .fsoc svg { width: 17px; height: 17px; fill: currentColor; }
+    .footer-logo-mark { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #3b82f6, #60a5fa); display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 1.05rem; letter-spacing: -.5px; }
+    .footer-logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .footer-logo-name { font-size: .87rem; font-weight: 800; color: rgba(255,255,255,.85); letter-spacing: -.2px; margin-bottom: 2px; display: block; }
+    .footer-logo-tag  { font-size: .58rem; color: rgba(255,255,255,.35); letter-spacing: 2.5px; text-transform: uppercase; display: block; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .contact-layout { grid-template-columns: 1fr; gap: 32px; }
+      .contact-sidebar { flex-direction: row; flex-wrap: wrap; }
+      .info-card { flex: 1 1 200px; }
+    }
+    @media (max-width: 768px) {
+      nav { grid-template-columns: 1fr auto; }
+      .nav-links, .nav-right { display: none; }
+      .hamburger { display: flex; }
+      .contact-form-wrap { padding: 28px 20px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .contact-sidebar { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div>
+    <a href="main.html" class="logo-link">
+      <div class="logo-mark">SB</div>
+      <div class="logo-text">
+        <span class="logo-name">SB digital</span>
+        <span class="logo-tag">ADVERTISING</span>
+      </div>
+    </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="o-nama.html">O nama</a></li>
+    <li><a href="usluge.html">Usluge</a></li>
+    <li><a href="kontakt.html" class="active">Kontakt</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="kontakt.html" class="nav-cta">Kontaktirajte nas</a>
+  </div>
+  <button class="hamburger" id="hambBtn" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="o-nama.html"  onclick="closeMenu()">O nama</a>
+  <a href="usluge.html"  onclick="closeMenu()">Usluge</a>
+  <a href="kontakt.html" onclick="closeMenu()">Kontakt</a>
+</div>
+
+<!-- ── PAGE HEADER ── -->
+<div class="page-header">
+  <div class="breadcrumb">
+    <a href="main.html">Početna</a>
+    <span>›</span>
+    <span>Kontakt</span>
+  </div>
+  <h1>Kontakt</h1>
+  <p class="ph-sub">Pošaljite nam upit i javit ćemo vam se u najkraćem roku. Besplatna konzultacija bez ikakvih obaveza.</p>
+</div>
+
+<!-- ── CONTACT ── -->
+<section id="kontakt-section">
+  <div class="contact-layout">
+
+    <!-- sidebar: info -->
+    <div class="contact-sidebar">
+      <div class="info-card">
+        <div class="ic-label">Lokacija</div>
+        <div class="ic-value">Ljubuški</div>
+        <div class="ic-sub">Bosna i Hercegovina</div>
+      </div>
+
+      <div class="info-card">
+        <div class="ic-label">Društvene mreže</div>
+        <div class="social-cards">
+          <a class="social-card" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <span class="social-card-label">Instagram</span>
+            <span class="social-card-arrow">→</span>
+          </a>
+          <a class="social-card" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <span class="social-card-label">LinkedIn</span>
+            <span class="social-card-arrow">→</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="ic-label">Odgovaramo u roku</div>
+        <div class="ic-value">24 sata</div>
+        <div class="ic-sub">Radnim danom</div>
+      </div>
+    </div>
+
+    <!-- form -->
+    <div class="contact-form-wrap">
+      <h3>Pošaljite upit</h3>
+      <p class="form-desc">Ispunite obrazac i naš tim javit će vam se u roku od 24 sata s odgovorom i prijedlogom.</p>
+
+      <!--
+        FORMA — za aktivaciju:
+        1. Idite na https://formspree.io i registrirajte se besplatno
+        2. Kreirajte novi "form" i kopirajte endpoint (npr. https://formspree.io/f/abcdefgh)
+        3. Zamijenite action="ZAMIJENITI_SA_FORMSPREE_URL" s vašim endpointom
+      -->
+      <form id="contactForm" action="https://formspree.io/f/xeerkbpe" method="POST">
+
+        <!-- honeypot spam zaštita -->
+        <input type="text" name="_gotcha" class="form-hp" tabindex="-1" autocomplete="off" />
+        <!-- naslov emaila koji stigne -->
+        <input type="hidden" name="_subject" value="Novi upit - SB Digital Advertising" />
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="name">Ime i prezime *</label>
+            <input id="name" type="text" name="name" placeholder="Ime Prezime" required />
+          </div>
+          <div class="form-group">
+            <label for="tvrtka">Tvrtka / Obrt</label>
+            <input id="tvrtka" type="text" name="tvrtka" placeholder="Naziv tvrtke" />
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail *</label>
+            <input id="email" type="email" name="email" placeholder="ime.prezime@primjer.ba" required />
+          </div>
+          <div class="form-group">
+            <label for="telefon">Telefon</label>
+            <input id="telefon" type="tel" name="telefon" placeholder="+387 63 000 000" />
+          </div>
+          <div class="form-group full">
+            <label for="poruka">Poruka</label>
+            <textarea id="poruka" name="message" placeholder="Opišite kratko što biste željeli oglašavati i koje su vaše okvirne potrebe..."></textarea>
+          </div>
+        </div>
+        <button type="submit" class="form-submit" id="submitBtn">Pošalji upit →</button>
+        <div class="form-msg" id="formMsg"></div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="main.html" class="footer-logo-link">
+        <div class="footer-logo-mark">SB</div>
+        <div>
+          <span class="footer-logo-name">SB digital</span>
+          <span class="footer-logo-tag">ADVERTISING</span>
+        </div>
+      </a>
+      <p class="footer-brand-desc">Digitalno oglašavanje za lokalna i regionalna poduzeća. Ljubuški, BiH.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Navigacija</h5>
+      <ul>
+        <li><a href="o-nama.html">O nama</a></li>
+        <li><a href="usluge.html">Usluge</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Lokacija</h5>
+      <ul>
+        <li><a href="#">Ljubuški</a></li>
+        <li><a href="#">Bosna i Hercegovina</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 SB Digital Advertising. Sva prava pridržana.</span>
+    <div class="footer-socials">
+      <a class="fsoc" href="#" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a class="fsoc" href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+  function closeMenu()  { document.getElementById('mobileMenu').classList.remove('open'); }
+  document.addEventListener('click', e => {
+    const m = document.getElementById('mobileMenu'), b = document.getElementById('hambBtn');
+    if (m.classList.contains('open') && !m.contains(e.target) && !b.contains(e.target)) m.classList.remove('open');
+  });
+
+  /* ── FORMA SUBMIT (Formspree AJAX) ── */
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const form   = this;
+    const btn    = document.getElementById('submitBtn');
+    const msg    = document.getElementById('formMsg');
+    const action = form.action;
+
+    // provjeri je li endpoint konfiguriran
+    if (!action || action === 'ZAMIJENITI_SA_FORMSPREE_URL') {
+      msg.className = 'form-msg error';
+      msg.textContent = '⚠ Forma nije još konfigurirana. Molimo kontaktirajte nas direktno.';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Slanje...';
+    msg.className = 'form-msg';
+
+    try {
+      const res = await fetch(action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        msg.className = 'form-msg success';
+        msg.textContent = '✓ Upit je uspješno poslan! Javit ćemo vam se u roku od 24 sata.';
+        form.reset();
+        btn.textContent = 'Pošalji upit →';
+        btn.disabled = false;
+      } else {
+        const data = await res.json();
+        throw new Error(data.error || 'Greška pri slanju');
+      }
+    } catch (err) {
+      msg.className = 'form-msg error';
+      msg.textContent = '✗ Došlo je do greške. Molimo pokušajte ponovo ili nas kontaktirajte direktno.';
+      btn.textContent = 'Pošalji upit →';
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
