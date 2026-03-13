@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SB Digital Advertising</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e3a8a'/><text y='.82em' font-size='52' font-family='sans-serif' font-weight='900' fill='white' x='10'>SB</text></svg>">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -48,7 +49,15 @@
       border-bottom: 1px solid var(--border);
     }
     .nav-logo { display: flex; align-items: center; }
-    .nav-logo a { display: flex; align-items: center; text-decoration: none; }
+    .logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-mark { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #1e3a8a, #3b82f6); display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 1.05rem; letter-spacing: -.5px; flex-shrink: 0; }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-name { font-size: .87rem; font-weight: 800; color: #1e3a8a; letter-spacing: -.2px; margin-bottom: 2px; }
+    .logo-tag { font-size: .6rem; color: #64748b; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; }
+    .footer-logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .footer-logo-mark { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #3b82f6, #60a5fa); display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 1.05rem; letter-spacing: -.5px; flex-shrink: 0; }
+    .footer-logo-name { font-size: .87rem; font-weight: 800; color: rgba(255,255,255,.85); letter-spacing: -.2px; margin-bottom: 2px; display: block; }
+    .footer-logo-tag { font-size: .6rem; color: rgba(255,255,255,.35); letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; }
 
     .nav-links {
       display: flex; gap: 4px; list-style: none; align-items: center;
@@ -491,23 +500,12 @@
 <!-- ── NAV ── -->
 <nav>
   <div class="nav-logo">
-    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
-      <svg width="174" height="42" viewBox="0 0 174 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="SB Digital Advertising">
-        <defs>
-          <linearGradient id="logoG" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#1e3a8a"/>
-            <stop offset="100%" stop-color="#3b82f6"/>
-          </linearGradient>
-        </defs>
-        <rect x="0" y="1" width="40" height="40" rx="10" fill="url(#logoG)"/>
-        <!-- S letter -->
-        <path d="M12 15.5 C12 13.5 14 12 17 12 C20 12 22 13.5 22 15.5 C22 17.5 20 18.5 16 19.5 C12 20.5 10.5 22 10.5 24 C10.5 26.5 12.5 28 16 28 C19.5 28 22 26.5 22 24.5" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-        <!-- B letter -->
-        <path d="M25 12 L25 28 M25 12 L29 12 C31.5 12 33 13.2 33 15.2 C33 17.2 31.5 18.5 29 18.5 L25 18.5 M25 18.5 L29.5 18.5 C32 18.5 33.5 19.8 33.5 21.8 C33.5 24.5 32 28 28.5 28 L25 28" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <!-- Company name text -->
-        <text x="50" y="18" font-family="'Segoe UI', Arial, sans-serif" font-weight="800" font-size="13.5" fill="#1e3a8a" letter-spacing="-0.2">SB digital</text>
-        <text x="50" y="33" font-family="'Segoe UI', Arial, sans-serif" font-weight="500" font-size="9.5" fill="#64748b" letter-spacing="2.5">ADVERTISING</text>
-      </svg>
+    <a href="main.html" class="logo-link">
+      <div class="logo-mark">SB</div>
+      <div class="logo-text">
+        <span class="logo-name">SB digital</span>
+        <span class="logo-tag">ADVERTISING</span>
+      </div>
     </a>
   </div>
 
@@ -784,20 +782,13 @@
 <footer>
   <div class="footer-top">
     <div>
-      <!-- footer logo (white version) -->
-      <svg width="150" height="38" viewBox="0 0 174 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="SB Digital Advertising">
-        <defs>
-          <linearGradient id="footLogoG" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#3b82f6"/>
-            <stop offset="100%" stop-color="#60a5fa"/>
-          </linearGradient>
-        </defs>
-        <rect x="0" y="1" width="40" height="40" rx="10" fill="url(#footLogoG)"/>
-        <path d="M12 15.5 C12 13.5 14 12 17 12 C20 12 22 13.5 22 15.5 C22 17.5 20 18.5 16 19.5 C12 20.5 10.5 22 10.5 24 C10.5 26.5 12.5 28 16 28 C19.5 28 22 26.5 22 24.5" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-        <path d="M25 12 L25 28 M25 12 L29 12 C31.5 12 33 13.2 33 15.2 C33 17.2 31.5 18.5 29 18.5 L25 18.5 M25 18.5 L29.5 18.5 C32 18.5 33.5 19.8 33.5 21.8 C33.5 24.5 32 28 28.5 28 L25 28" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <text x="50" y="18" font-family="'Segoe UI', Arial, sans-serif" font-weight="800" font-size="13.5" fill="rgba(255,255,255,0.9)" letter-spacing="-0.2">SB digital</text>
-        <text x="50" y="33" font-family="'Segoe UI', Arial, sans-serif" font-weight="500" font-size="9.5" fill="rgba(255,255,255,0.4)" letter-spacing="2.5">ADVERTISING</text>
-      </svg>
+      <a href="main.html" class="footer-logo-link">
+        <div class="footer-logo-mark">SB</div>
+        <div>
+          <span class="footer-logo-name">SB digital</span>
+          <span class="footer-logo-tag">ADVERTISING</span>
+        </div>
+      </a>
       <p class="footer-brand-desc">Digitalno oglašavanje za lokalna i regionalna poduzeća. Ljubuški, BiH.</p>
     </div>
 
