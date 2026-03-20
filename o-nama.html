@@ -4,7 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>O nama – SB Digital Advertising</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e3a8a'/><text y='.82em' font-size='52' font-family='sans-serif' font-weight='900' fill='white' x='10'>SB</text></svg>">
+  <link rel="icon" href="logo/2.png">
+  <!-- SEO -->
+  <meta name="description" content="Saznajte više o SB Digital Advertising timu – stručnjaci za digitalno oglašavanje iz Ljubuškog, BiH. Naša misija, vrijednosti i pristup radu.">
+  <meta name="keywords" content="o nama, SB Digital Advertising, digitalni marketing tim, Ljubuški, BiH, social media, Google Ads">
+  <meta name="author" content="SB Digital Advertising">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="O nama – SB Digital Advertising">
+  <meta property="og:description" content="Upoznajte SB Digital Advertising tim – vaši partneri za digitalno oglašavanje u BiH.">
+  <meta property="og:image" content="logo/2.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="O nama – SB Digital Advertising">
+  <meta name="twitter:description" content="Upoznajte SB Digital Advertising tim – vaši partneri za digitalno oglašavanje u BiH.">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -21,7 +33,8 @@
 
     /* ── LOGO ── */
     .logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .logo-mark { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #1e3a8a, #3b82f6); display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 1.05rem; letter-spacing: -.5px; flex-shrink: 0; }
+    .logo-mark { width: 40px; height: 40px; border-radius: 10px; overflow: hidden; flex-shrink: 0; }
+    .logo-mark img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .logo-text { display: flex; flex-direction: column; line-height: 1; }
     .logo-name { font-size: .87rem; font-weight: 800; color: #1e3a8a; letter-spacing: -.2px; margin-bottom: 2px; }
     .logo-tag  { font-size: .58rem; color: #64748b; letter-spacing: 2.5px; text-transform: uppercase; }
@@ -146,7 +159,8 @@
     .fsoc { width: 40px; height: 40px; border-radius: 10px; border: 1px solid rgba(255,255,255,.14); display: flex; align-items: center; justify-content: center; text-decoration: none; color: rgba(255,255,255,.6); transition: border-color .2s, background .2s, color .2s; }
     .fsoc:hover { border-color: var(--blue-light); background: rgba(59,130,246,.15); color: white; }
     .fsoc svg { width: 17px; height: 17px; fill: currentColor; }
-    .footer-logo-mark { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #3b82f6, #60a5fa); display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 1.05rem; letter-spacing: -.5px; }
+    .footer-logo-mark { width: 40px; height: 40px; border-radius: 10px; overflow: hidden; }
+    .footer-logo-mark img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .footer-logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
     .footer-logo-name { font-size: .87rem; font-weight: 800; color: rgba(255,255,255,.85); letter-spacing: -.2px; margin-bottom: 2px; display: block; }
     .footer-logo-tag  { font-size: .58rem; color: rgba(255,255,255,.35); letter-spacing: 2.5px; text-transform: uppercase; display: block; }
@@ -172,7 +186,7 @@
 <nav>
   <div>
     <a href="main.html" class="logo-link">
-      <div class="logo-mark">SB</div>
+      <div class="logo-mark"><img src="logo/2.png" alt="SB digital logo"></div>
       <div class="logo-text">
         <span class="logo-name">SB digital</span>
         <span class="logo-tag">ADVERTISING</span>
@@ -182,19 +196,21 @@
   <ul class="nav-links">
     <li><a href="o-nama.html" class="active">O nama</a></li>
     <li><a href="usluge.html">Usluge</a></li>
+    <li><a href="kalkulator.html">Kalkulator</a></li>
     <li><a href="kontakt.html">Kontakt</a></li>
   </ul>
   <div class="nav-right">
-    <a href="kontakt.html" class="nav-cta">Kontaktirajte nas</a>
+    <a href="kalkulator.html" class="nav-cta">Interaktivni kalkulator</a>
   </div>
   <button class="hamburger" id="hambBtn" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="o-nama.html"  onclick="closeMenu()">O nama</a>
-  <a href="usluge.html"  onclick="closeMenu()">Usluge</a>
-  <a href="kontakt.html" onclick="closeMenu()">Kontakt</a>
+  <a href="o-nama.html"     onclick="closeMenu()">O nama</a>
+  <a href="usluge.html"     onclick="closeMenu()">Usluge</a>
+  <a href="kalkulator.html" onclick="closeMenu()">Kalkulator</a>
+  <a href="kontakt.html"    onclick="closeMenu()">Kontakt</a>
 </div>
 
 <!-- ── PAGE HEADER ── -->
@@ -319,7 +335,7 @@
   <div class="footer-top">
     <div>
       <a href="main.html" class="footer-logo-link">
-        <div class="footer-logo-mark">SB</div>
+        <div class="footer-logo-mark"><img src="logo/2.png" alt="SB digital logo"></div>
         <div>
           <span class="footer-logo-name">SB digital</span>
           <span class="footer-logo-tag">ADVERTISING</span>
@@ -366,6 +382,13 @@
   });
   const io = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; } }); }, { threshold: 0.08 });
   document.querySelectorAll('.value-card, .why-item, .intro-visual').forEach(el => { el.style.opacity='0'; el.style.transform='translateY(20px)'; el.style.transition='opacity .5s ease, transform .5s ease'; io.observe(el); });
+
+  /* ── ZAŠTITA SADRŽAJA ── */
+  document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+  document.addEventListener('dragstart', function(e) { if (e.target.tagName === 'IMG') e.preventDefault(); });
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && ['u','s','p'].includes(e.key.toLowerCase())) e.preventDefault();
+  });
 </script>
 </body>
 </html>
