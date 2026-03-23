@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SB Digital Advertising</title>
+  <title>SB Digital Advertising – Digitalno oglašavanje | Ljubuški, BiH</title>
   <link rel="icon" href="logo/2.png">
   <!-- SEO -->
   <meta name="description" content="SB Digital Advertising – stručno digitalno oglašavanje za lokalna i regionalna poduzeća. Social media marketing, Google Ads, web dizajn i brendiranje. Ljubuški, BiH.">
@@ -17,6 +17,23 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SB Digital Advertising">
   <meta name="twitter:description" content="Stručno digitalno oglašavanje za lokalna i regionalna poduzeća u BiH.">
+  <meta name="twitter:image" content="logo/2.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "SB Digital Advertising",
+    "description": "Stručno digitalno oglašavanje za lokalna i regionalna poduzeća. Social media marketing, Google Ads, web dizajn i brendiranje.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ljubuški",
+      "addressCountry": "BA"
+    },
+    "areaServed": "BA",
+    "image": "logo/2.png",
+    "url": ""
+  }
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -165,24 +182,6 @@
       font-style: normal;
       background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-light) 100%);
       -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-    }
-
-    /* slogan placeholder */
-    .slogan-placeholder {
-      margin-top: 24px;
-      padding: 14px 20px;
-      border: 1.5px dashed var(--border-blue);
-      border-radius: 10px;
-      background: var(--bg-tint);
-      color: var(--muted);
-      font-size: .88rem;
-      font-style: italic;
-      letter-spacing: .3px;
-    }
-    .slogan-placeholder span {
-      font-size: .7rem; text-transform: uppercase; letter-spacing: 2px;
-      color: var(--blue); font-style: normal; font-weight: 700;
-      display: block; margin-bottom: 4px;
     }
 
     .hero-sub {
@@ -563,12 +562,6 @@
     </div>
     <h1>Vaš brend u<br/><em>digitalnom</em> centru pažnje</h1>
 
-    <!-- SLOGAN PLACEHOLDER — zamijeniti kad slogan bude spreman -->
-    <div class="slogan-placeholder">
-      <span>Slogan</span>
-      Ovdje dolazi slogan tvrtke...
-    </div>
-
     <p class="hero-sub">
       Pomažemo vašem poslovanju da dopre do pravih kupaca — kroz moderne i učinkovite digitalne reklamne kampanje.
     </p>
@@ -580,7 +573,7 @@
 
   <!-- desno: slika (zamijeniti src kad bude realna slika) -->
   <div class="hero-image-wrap">
-    <img src="5-ORL-004102-DB_Campaign_ParisBaguetteUSAInc_2022-10-25_171002235-blog.jpg"
+    <img src="hero-campaign.jpg"
          alt="SB Digital Advertising kampanja"
          loading="eager" />
   </div>
@@ -749,30 +742,34 @@
 
     <div class="contact-form-wrap">
       <h3>Pošaljite upit</h3>
-      <form onsubmit="handleSubmit(event)">
+      <form id="contactForm" action="https://formspree.io/f/xeerkbpe" method="POST">
+        <!-- honeypot spam zaštita -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+        <input type="hidden" name="_subject" value="Novi upit (main) - SB Digital Advertising" />
         <div class="form-grid">
           <div class="form-group">
-            <label>Ime i prezime *</label>
-            <input type="text" placeholder="Ana Kovač" required />
+            <label for="m-name">Ime i prezime *</label>
+            <input id="m-name" type="text" name="name" placeholder="Ana Kovač" required />
           </div>
           <div class="form-group">
-            <label>Tvrtka / Obrt</label>
-            <input type="text" placeholder="Naziv tvrtke" />
+            <label for="m-tvrtka">Tvrtka / Obrt</label>
+            <input id="m-tvrtka" type="text" name="tvrtka" placeholder="Naziv tvrtke" />
           </div>
           <div class="form-group">
-            <label>E-mail *</label>
-            <input type="email" placeholder="ana@primjer.ba" required />
+            <label for="m-email">E-mail *</label>
+            <input id="m-email" type="email" name="email" placeholder="ana@primjer.ba" required />
           </div>
           <div class="form-group">
-            <label>Telefon</label>
-            <input type="tel" placeholder="+387 63 000 000" />
+            <label for="m-telefon">Telefon</label>
+            <input id="m-telefon" type="tel" name="telefon" placeholder="+387 63 000 000" />
           </div>
           <div class="form-group full">
-            <label>Poruka</label>
-            <textarea placeholder="Opišite kratko što biste željeli oglašavati i koje su vaše okvirne potrebe..."></textarea>
+            <label for="m-poruka">Poruka</label>
+            <textarea id="m-poruka" name="message" placeholder="Opišite kratko što biste željeli oglašavati i koje su vaše okvirne potrebe..."></textarea>
           </div>
         </div>
-        <button type="submit" class="form-submit">Pošalji upit →</button>
+        <button type="submit" class="form-submit" id="submitBtn">Pošalji upit →</button>
+        <div class="form-msg" id="formMsg" style="display:none;margin-top:16px;padding:14px 18px;border-radius:10px;font-size:.9rem;font-weight:600;"></div>
       </form>
     </div>
   </div>
@@ -821,14 +818,15 @@
         <li><a href="#o-nama">O nama</a></li>
         <li><a href="#usluge">Usluge</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="privatnost.html">Privatnost</a></li>
       </ul>
     </div>
 
     <div class="footer-col">
       <h5>Lokacija</h5>
       <ul>
-        <li><a href="#">Ljubuški</a></li>
-        <li><a href="#">Bosna i Hercegovina</a></li>
+        <li><a href="https://maps.google.com/?q=43.1983,17.5528" target="_blank" rel="noopener">Ljubuški</a></li>
+        <li><a href="https://maps.google.com/?q=43.1983,17.5528" target="_blank" rel="noopener">Bosna i Hercegovina</a></li>
       </ul>
     </div>
   </div>
@@ -844,7 +842,7 @@
       </a>
     </div>
   </div>
-  <div class="footer-credit">Copyright &copy; 2026 &ndash; by <a href="https://itasel.org" target="_blank" rel="noopener">ITASEL</a></div>
+  <div class="footer-credit">Copyright &copy; 2026 &ndash; by <a href="https://it.itasel.org" target="_blank" rel="noopener">ITASEL</a></div>
 </footer>
 
 <script>
@@ -864,20 +862,46 @@
     }
   });
 
-  /* form submit */
-  function handleSubmit(e) {
+  /* ── FORMA SUBMIT (Formspree AJAX) ── */
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-    const btn = e.target.querySelector('.form-submit');
-    btn.textContent = '✓ Upit je poslan!';
-    btn.style.background = 'linear-gradient(135deg,#15803d,#22c55e)';
+    const form   = this;
+    const btn    = document.getElementById('submitBtn');
+    const msg    = document.getElementById('formMsg');
+    const action = form.action;
+
     btn.disabled = true;
-    setTimeout(() => {
-      btn.textContent = 'Pošalji upit →';
-      btn.style.background = '';
-      btn.disabled = false;
-      e.target.reset();
-    }, 4000);
-  }
+    btn.textContent = 'Slanje...';
+    msg.style.display = 'none';
+
+    try {
+      const res = await fetch(action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        msg.style.display = 'block';
+        msg.style.background = '#f0fdf4';
+        msg.style.border = '1px solid #bbf7d0';
+        msg.style.color = '#15803d';
+        msg.textContent = '✓ Upit je uspješno poslan! Javit ćemo vam se u roku od 24 sata.';
+        form.reset();
+      } else {
+        const data = await res.json();
+        throw new Error(data.error || 'Greška pri slanju');
+      }
+    } catch (err) {
+      msg.style.display = 'block';
+      msg.style.background = '#fef2f2';
+      msg.style.border = '1px solid #fecaca';
+      msg.style.color = '#dc2626';
+      msg.textContent = '✗ Došlo je do greške. Molimo pokušajte ponovo ili nas kontaktirajte direktno.';
+    }
+    btn.textContent = 'Pošalji upit →';
+    btn.disabled = false;
+  });
 
   /* scroll-in animations */
   const io = new IntersectionObserver(entries => {

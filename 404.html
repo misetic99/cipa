@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 – Stranica nije pronađena</title>
+  <link rel="icon" href="logo/2.png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue: #1d4ed8; --blue-light: #3b82f6; --blue-dark: #1e3a8a;
+      --bg: #f5f8ff; --text: #0f172a; --muted: #64748b;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; }
+    .error-code { font-size: clamp(5rem, 15vw, 10rem); font-weight: 900; letter-spacing: -4px; background: linear-gradient(135deg, var(--blue-dark), var(--blue-light)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
+    h1 { font-size: 1.5rem; font-weight: 800; margin: 16px 0 8px; color: var(--text); }
+    p { color: var(--muted); font-size: 1.05rem; max-width: 420px; margin-bottom: 32px; }
+    .back-btn { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--blue-dark), var(--blue-light)); color: #fff; text-decoration: none; padding: 14px 36px; border-radius: 50px; font-size: .97rem; font-weight: 700; box-shadow: 0 8px 32px rgba(29,78,216,.3); transition: transform .2s, box-shadow .2s; }
+    .back-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 42px rgba(29,78,216,.45); }
+    .logo { margin-bottom: 40px; }
+    .logo img { width: 56px; height: 56px; border-radius: 14px; }
+  </style>
+</head>
+<body>
+  <div class="logo"><img src="logo/2.png" alt="SB digital logo"></div>
+  <div class="error-code">404</div>
+  <h1>Stranica nije pronađena</h1>
+  <p>Stranica koju tražite ne postoji ili je premještena. Provjerite adresu ili se vratite na početnu.</p>
+  <a href="main.html" class="back-btn">← Natrag na početnu</a>
+</body>
+</html>
