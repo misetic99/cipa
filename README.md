@@ -43,5 +43,5 @@ Otvoriti `main.html` u pregledniku. Nema potrebe za serverom ni instalacijom.
 
 ## Autor
 
-Dizajn i razvoj: [ITASEL](https://it.itasel.org)
+Dizajn i razvoj: [ITASEL](https://www.itasel.org)
 Klijent: SB Digital Advertising, Ljubuški, BiH
