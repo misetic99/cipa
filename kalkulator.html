@@ -492,22 +492,22 @@
         <div class="slider-item">
           <div class="slider-header">
             <span class="slider-label">Trajanje reklame</span>
-            <span class="slider-value" id="val-trajanje">30<span class="slider-unit">sek</span></span>
+            <span class="slider-value" id="val-trajanje">7<span class="slider-unit">sek</span></span>
           </div>
           <div class="slider-row">
-            <input type="range" id="trajanje" min="1" max="60" step="1" value="30"
+            <input type="range" id="trajanje" min="1" max="60" step="1" value="7"
                    oninput="updateCalc('range')">
-            <input type="number" id="trajanjeInput" min="1" max="60" step="1" value="30"
+            <input type="number" id="trajanjeInput" min="1" max="60" step="1" value="7"
                    oninput="updateCalc('input')" aria-label="Trajanje reklame (sekunde)">
           </div>
           <div class="slider-ticks">
             <span>1 sek</span><span>15 sek</span><span>30 sek</span><span>60 sek</span>
           </div>
           <div class="quick-picks" id="qpicks-trajanje">
+            <button class="qpick active" onclick="setVal('trajanje',7)">7 sek</button>
             <button class="qpick" onclick="setVal('trajanje',10)">10 sek</button>
-            <button class="qpick active" onclick="setVal('trajanje',30)">30 sek</button>
-            <button class="qpick" onclick="setVal('trajanje',45)">45 sek</button>
-            <button class="qpick" onclick="setVal('trajanje',60)">60 sek</button>
+            <button class="qpick" onclick="setVal('trajanje',15)">15 sek</button>
+            <button class="qpick" onclick="setVal('trajanje',30)">30 sek</button>
           </div>
         </div>
 
@@ -515,16 +515,22 @@
         <div class="slider-item">
           <div class="slider-header">
             <span class="slider-label">Ponavljanja dnevno</span>
-            <span class="slider-value" id="val-ponavljanja">5<span class="slider-unit">x/dan</span></span>
+            <span class="slider-value" id="val-ponavljanja">360<span class="slider-unit">x/dan</span></span>
           </div>
           <div class="slider-row">
-            <input type="range" id="ponavljanja" min="1" max="1000" step="1" value="5"
+            <input type="range" id="ponavljanja" min="1" max="1000" step="1" value="360"
                    oninput="updateCalc('range')">
-            <input type="number" id="ponavljanjaInput" min="1" max="1000" step="1" value="5"
+            <input type="number" id="ponavljanjaInput" min="1" max="1000" step="1" value="360"
                    oninput="updateCalc('input')" aria-label="Ponavljanja dnevno">
           </div>
           <div class="slider-ticks">
             <span>1</span><span>250</span><span>500</span><span>1000</span>
+          </div>
+          <div class="quick-picks" id="qpicks-ponavljanja">
+            <button class="qpick" onclick="setVal('ponavljanja',120)">120×</button>
+            <button class="qpick" onclick="setVal('ponavljanja',240)">240×</button>
+            <button class="qpick active" onclick="setVal('ponavljanja',360)">360×</button>
+            <button class="qpick" onclick="setVal('ponavljanja',480)">480×</button>
           </div>
         </div>
 
@@ -532,23 +538,22 @@
         <div class="slider-item">
           <div class="slider-header">
             <span class="slider-label">Trajanje kampanje</span>
-            <span class="slider-value" id="val-dani">7<span class="slider-unit">dana</span></span>
+            <span class="slider-value" id="val-dani">28<span class="slider-unit">dana</span></span>
           </div>
           <div class="slider-row">
-            <input type="range" id="dani" min="1" max="90" step="1" value="7"
+            <input type="range" id="dani" min="1" max="90" step="1" value="28"
                    oninput="updateCalc('range')">
-            <input type="number" id="daniInput" min="1" max="90" step="1" value="7"
+            <input type="number" id="daniInput" min="1" max="90" step="1" value="28"
                    oninput="updateCalc('input')" aria-label="Trajanje kampanje (dani)">
           </div>
           <div class="slider-ticks">
             <span>1 dan</span><span>30 dana</span><span>60 dana</span><span>90 dana</span>
           </div>
           <div class="quick-picks" id="qpicks-dani">
-            <button class="qpick" onclick="setVal('dani',7)">1 sedmica</button>
-            <button class="qpick active" onclick="setVal('dani',14)">2 sedmice</button>
+            <button class="qpick" onclick="setVal('dani',7)">1 tjedan</button>
+            <button class="qpick" onclick="setVal('dani',14)">2 tjedna</button>
+            <button class="qpick active" onclick="setVal('dani',28)">4 tjedna</button>
             <button class="qpick" onclick="setVal('dani',30)">1 mjesec</button>
-            <button class="qpick" onclick="setVal('dani',60)">2 mjeseca</button>
-            <button class="qpick" onclick="setVal('dani',90)">3 mjeseca</button>
           </div>
         </div>
 
@@ -591,15 +596,15 @@
       <div class="summary-grid">
         <div class="summary-item">
           <div class="summary-item-label">Trajanje spota</div>
-          <div class="summary-item-val" id="sum-trajanje">30 sekundi</div>
+          <div class="summary-item-val" id="sum-trajanje">7 sekundi</div>
         </div>
         <div class="summary-item">
           <div class="summary-item-label">Ponavljanja dnevno</div>
-          <div class="summary-item-val" id="sum-ponavljanja">5 puta</div>
+          <div class="summary-item-val" id="sum-ponavljanja">360 puta</div>
         </div>
         <div class="summary-item">
           <div class="summary-item-label">Trajanje kampanje</div>
-          <div class="summary-item-val" id="sum-dani">7 dana</div>
+          <div class="summary-item-val" id="sum-dani">28 dana</div>
         </div>
         <div class="summary-item">
           <div class="summary-item-label">Popust (dulja kampanja)</div>
@@ -616,7 +621,7 @@
           <div class="info-icon">&#9201;</div>
           <div class="info-text">
             <strong>Trajanje spota</strong>
-            <span>Duži spot košta više. Baza je 30 sekundi; kraći spotovi se proporcionalno popuštaju, duži se naplaćuju više.</span>
+            <span>Cijena se računa po sekundi emitiranja — duži spot proporcionalno košta više, kraći manje.</span>
           </div>
         </div>
         <div class="info-item">
@@ -630,7 +635,7 @@
           <div class="info-icon">&#128197;</div>
           <div class="info-text">
             <strong>Popust za dužinu</strong>
-            <span>Kampanje 15+ dana dobivaju 10% popusta, a kampanje 30+ dana 20% popusta.</span>
+            <span>Kampanje 14+ dana dobivaju 10% popusta, a kampanje 28+ dana (4 tjedna) 20% popusta.</span>
           </div>
         </div>
         <div class="info-item">
@@ -646,13 +651,13 @@
   </div>
 
   <footer>
-    &copy; 2025 SB Digital Advertising &mdash; Ova stranica je kalkulator za internu upotrebu i okvirne ponude.
+    &copy; 2026 SB Digital Advertising &mdash; Sve prikazane cijene su okvirne i podložne konačnom dogovoru.
     <div class="footer-credit">Copyright &copy; 2026 &ndash; by <a href="https://www.itasel.org" target="_blank" rel="noopener">ITASEL</a></div>
   </footer>
 
   <script>
     // ── Cijene ──────────────────────────────────────
-    const BASE_RATE_30S = 12;   // KM po jednom emitiranju 30-sekundnog spota
+    const BASE_RATE_30S = 0.53; // KM po jednom emitiranju 30-sekundnog spota
     const MIN_PRICE     = 300;  // KM minimalna cijena kampanje
 
     function calcPrice(trajanje, ponavljanja, dani) {
@@ -669,8 +674,8 @@
 
       // Popust za dužinu kampanje
       let popust = 0;
-      if (dani >= 30) popust = 0.20;
-      else if (dani >= 15) popust = 0.10;
+      if (dani >= 28) popust = 0.20;
+      else if (dani >= 14) popust = 0.10;
 
       cijena = cijena * (1 - popust);
 
@@ -762,6 +767,7 @@
 
       // Quick pick active states
       updateQpickActive('trajanje', trajanje);
+      updateQpickActive('ponavljanja', ponavljanja);
       updateQpickActive('dani', dani);
     }
 
@@ -795,8 +801,6 @@
 
     // Initial render
     updateCalc();
-    // Fix initial dani qpick: slider starts at 7 but button group has 14 active by default in HTML
-    setVal('dani', 7);
 
     /* ── NAV MOBILE ── */
     function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
