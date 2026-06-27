@@ -156,29 +156,62 @@
     }
 
     .slider-item {}
-    .slider-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 10px;
-    }
     .slider-label {
+      display: block;
       font-size: .95rem;
       font-weight: 600;
       color: var(--text2);
+      margin-bottom: 10px;
     }
     .slider-value {
       font-size: 1.35rem;
       font-weight: 800;
       color: var(--blue-mid);
-      min-width: 80px;
-      text-align: right;
     }
     .slider-unit {
       font-size: .75rem;
       font-weight: 500;
       color: var(--muted);
       margin-left: 4px;
+    }
+
+    .slider-main {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .slider-track-col {
+      flex: 1;
+      min-width: 0;
+    }
+    .slider-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      min-width: 76px;
+    }
+    .slider-right input[type="number"] {
+      width: 76px;
+      padding: 6px 8px;
+      border: 1px solid var(--border-blue);
+      border-radius: 8px;
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--blue-dark);
+      background: var(--bg-tint);
+      text-align: center;
+      outline: none;
+      -moz-appearance: textfield;
+    }
+    .slider-right input[type="number"]::-webkit-outer-spin-button,
+    .slider-right input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .slider-right input[type="number"]:focus {
+      border-color: var(--blue-mid);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.12);
     }
 
     input[type="range"] {
@@ -321,11 +354,6 @@
       font-weight: 600;
       color: rgba(255,255,255,.8);
       margin-bottom: 24px;
-    }
-    .result-minimum-badge.active {
-      background: rgba(255,200,0,.18);
-      border-color: rgba(255,200,0,.4);
-      color: #fde047;
     }
 
     .result-breakdown {
@@ -490,70 +518,79 @@
 
         <!-- Trajanje reklame -->
         <div class="slider-item">
-          <div class="slider-header">
-            <span class="slider-label">Trajanje reklame</span>
-            <span class="slider-value" id="val-trajanje">7<span class="slider-unit">sek</span></span>
-          </div>
-          <div class="slider-row">
-            <input type="range" id="trajanje" min="1" max="60" step="1" value="7"
-                   oninput="updateCalc('range')">
-            <input type="number" id="trajanjeInput" min="1" max="60" step="1" value="7"
-                   oninput="updateCalc('input')" aria-label="Trajanje reklame (sekunde)">
-          </div>
-          <div class="slider-ticks">
-            <span>1 sek</span><span>15 sek</span><span>30 sek</span><span>60 sek</span>
+          <span class="slider-label">Trajanje reklame</span>
+          <div class="slider-main">
+            <div class="slider-track-col">
+              <input type="range" id="trajanje" min="8" max="15" step="1" value="8"
+                     oninput="updateCalc('range')">
+              <div class="slider-ticks">
+                <span>8 sek</span><span>10 sek</span><span>12 sek</span><span>15 sek</span>
+              </div>
+            </div>
+            <div class="slider-right">
+              <span class="slider-value" id="val-trajanje">8<span class="slider-unit">sek</span></span>
+              <input type="number" id="trajanjeInput" min="8" max="15" step="1" value="8"
+                     oninput="updateCalc('input')" onblur="normalizeInput('trajanje', 8, 15)"
+                     aria-label="Trajanje reklame (sekunde)">
+            </div>
           </div>
           <div class="quick-picks" id="qpicks-trajanje">
-            <button class="qpick active" onclick="setVal('trajanje',7)">7 sek</button>
+            <button class="qpick active" onclick="setVal('trajanje',8)">8 sek</button>
             <button class="qpick" onclick="setVal('trajanje',10)">10 sek</button>
+            <button class="qpick" onclick="setVal('trajanje',12)">12 sek</button>
             <button class="qpick" onclick="setVal('trajanje',15)">15 sek</button>
-            <button class="qpick" onclick="setVal('trajanje',30)">30 sek</button>
           </div>
         </div>
 
         <!-- Ponavljanja dnevno -->
         <div class="slider-item">
-          <div class="slider-header">
-            <span class="slider-label">Ponavljanja dnevno</span>
-            <span class="slider-value" id="val-ponavljanja">360<span class="slider-unit">x/dan</span></span>
-          </div>
-          <div class="slider-row">
-            <input type="range" id="ponavljanja" min="1" max="1000" step="1" value="360"
-                   oninput="updateCalc('range')">
-            <input type="number" id="ponavljanjaInput" min="1" max="1000" step="1" value="360"
-                   oninput="updateCalc('input')" aria-label="Ponavljanja dnevno">
-          </div>
-          <div class="slider-ticks">
-            <span>1</span><span>250</span><span>500</span><span>1000</span>
+          <span class="slider-label">Ponavljanja dnevno</span>
+          <div class="slider-main">
+            <div class="slider-track-col">
+              <input type="range" id="ponavljanja" min="300" max="1200" step="1" value="300"
+                     oninput="updateCalc('range')">
+              <div class="slider-ticks">
+                <span>300</span><span>600</span><span>900</span><span>1200</span>
+              </div>
+            </div>
+            <div class="slider-right">
+              <span class="slider-value" id="val-ponavljanja">300<span class="slider-unit">x/dan</span></span>
+              <input type="number" id="ponavljanjaInput" min="300" max="1200" step="1" value="300"
+                     oninput="updateCalc('input')" onblur="normalizeInput('ponavljanja', 300, 1200)"
+                     aria-label="Ponavljanja dnevno">
+            </div>
           </div>
           <div class="quick-picks" id="qpicks-ponavljanja">
-            <button class="qpick" onclick="setVal('ponavljanja',120)">120×</button>
-            <button class="qpick" onclick="setVal('ponavljanja',240)">240×</button>
-            <button class="qpick active" onclick="setVal('ponavljanja',360)">360×</button>
-            <button class="qpick" onclick="setVal('ponavljanja',480)">480×</button>
+            <button class="qpick active" onclick="setVal('ponavljanja',300)">300×</button>
+            <button class="qpick" onclick="setVal('ponavljanja',600)">600×</button>
+            <button class="qpick" onclick="setVal('ponavljanja',900)">900×</button>
+            <button class="qpick" onclick="setVal('ponavljanja',1200)">1200×</button>
           </div>
         </div>
 
-        <!-- Broj dana -->
+        <!-- Trajanje kampanje (mjeseci) -->
         <div class="slider-item">
-          <div class="slider-header">
-            <span class="slider-label">Trajanje kampanje</span>
-            <span class="slider-value" id="val-dani">28<span class="slider-unit">dana</span></span>
-          </div>
-          <div class="slider-row">
-            <input type="range" id="dani" min="1" max="90" step="1" value="28"
-                   oninput="updateCalc('range')">
-            <input type="number" id="daniInput" min="1" max="90" step="1" value="28"
-                   oninput="updateCalc('input')" aria-label="Trajanje kampanje (dani)">
-          </div>
-          <div class="slider-ticks">
-            <span>1 dan</span><span>30 dana</span><span>60 dana</span><span>90 dana</span>
+          <span class="slider-label">Trajanje kampanje</span>
+          <div class="slider-main">
+            <div class="slider-track-col">
+              <input type="range" id="dani" min="1" max="12" step="1" value="1"
+                     oninput="updateCalc('range')">
+              <div class="slider-ticks">
+                <span>1 mj.</span><span>4 mj.</span><span>8 mj.</span><span>12 mj.</span>
+              </div>
+            </div>
+            <div class="slider-right">
+              <span class="slider-value" id="val-dani">1<span class="slider-unit">mj.</span></span>
+              <input type="number" id="daniInput" min="1" max="12" step="1" value="1"
+                     oninput="updateCalc('input')" onblur="normalizeInput('dani', 1, 12)"
+                     aria-label="Trajanje kampanje (mjeseci)">
+            </div>
           </div>
           <div class="quick-picks" id="qpicks-dani">
-            <button class="qpick" onclick="setVal('dani',7)">1 tjedan</button>
-            <button class="qpick" onclick="setVal('dani',14)">2 tjedna</button>
-            <button class="qpick active" onclick="setVal('dani',28)">4 tjedna</button>
-            <button class="qpick" onclick="setVal('dani',30)">1 mjesec</button>
+            <button class="qpick active" onclick="setVal('dani',1)">1 mj.</button>
+            <button class="qpick" onclick="setVal('dani',3)">3 mj.</button>
+            <button class="qpick" onclick="setVal('dani',6)">6 mj.</button>
+            <button class="qpick" onclick="setVal('dani',12)">12 mj.</button>
           </div>
         </div>
 
@@ -570,7 +607,7 @@
         <div class="result-note">PDV nije uključen &middot; Cijena se može mijenjati ovisno o terminu emitiranja</div>
 
         <div class="result-minimum-badge" id="min-badge">
-          &#9888; Minimalna cijena kampanje: <strong>300 KM</strong>
+          &#9989; Cijena bez PDV-a &middot; 1.200 – 2.000 KM/mj.
         </div>
 
         <div class="result-breakdown">
@@ -579,8 +616,8 @@
             <div class="breakdown-lbl">Ukupno emitiranja</div>
           </div>
           <div class="breakdown-item">
-            <div class="breakdown-val" id="bd-sekundi">–</div>
-            <div class="breakdown-lbl">Ukupno sekundi</div>
+            <div class="breakdown-val" id="bd-mjesecno">–</div>
+            <div class="breakdown-lbl">Cijena/mj. (KM)</div>
           </div>
           <div class="breakdown-item">
             <div class="breakdown-val" id="bd-cijenaPo">–</div>
@@ -596,19 +633,19 @@
       <div class="summary-grid">
         <div class="summary-item">
           <div class="summary-item-label">Trajanje spota</div>
-          <div class="summary-item-val" id="sum-trajanje">7 sekundi</div>
+          <div class="summary-item-val" id="sum-trajanje">8 sekundi</div>
         </div>
         <div class="summary-item">
           <div class="summary-item-label">Ponavljanja dnevno</div>
-          <div class="summary-item-val" id="sum-ponavljanja">360 puta</div>
+          <div class="summary-item-val" id="sum-ponavljanja">300 puta</div>
         </div>
         <div class="summary-item">
           <div class="summary-item-label">Trajanje kampanje</div>
-          <div class="summary-item-val" id="sum-dani">28 dana</div>
+          <div class="summary-item-val" id="sum-dani">1 mjesec</div>
         </div>
         <div class="summary-item">
-          <div class="summary-item-label">Popust (dulja kampanja)</div>
-          <div class="summary-item-val" id="sum-popust">–</div>
+          <div class="summary-item-label">Cijena po mjesecu</div>
+          <div class="summary-item-val" id="sum-mjesecno">1.200,00 KM</div>
         </div>
       </div>
     </div>
@@ -634,15 +671,15 @@
         <div class="info-item">
           <div class="info-icon">&#128197;</div>
           <div class="info-text">
-            <strong>Popust za dužinu</strong>
-            <span>Kampanje 14+ dana dobivaju 10% popusta, a kampanje 28+ dana (4 tjedna) 20% popusta.</span>
+            <strong>Trajanje kampanje</strong>
+            <span>Kampanje traju od 1 do 12 mjeseci. Ukupna cijena = cijena/mj. &times; broj mjeseci.</span>
           </div>
         </div>
         <div class="info-item">
           <div class="info-icon">&#9889;</div>
           <div class="info-text">
-            <strong>Minimalna cijena</strong>
-            <span>Svaka kampanja ima minimalnu cijenu od 300 KM bez obzira na parametre.</span>
+            <strong>Cijena po mjesecu</strong>
+            <span>Mjesečna cijena iznosi između 1.200 KM i 2.000 KM bez PDV-a, ovisno o trajanju spota i broju ponavljanja.</span>
           </div>
         </div>
       </div>
@@ -652,38 +689,28 @@
 
   <footer>
     &copy; 2026 SB Digital Advertising &mdash; Sve prikazane cijene su okvirne i podložne konačnom dogovoru.
-    <div class="footer-credit">Copyright &copy; 2026 &ndash; by <a href="https://www.itasel.org" target="_blank" rel="noopener">ITASEL</a></div>
+    <div class="footer-credit">Copyright &copy; 2026 &ndash; by <a href="https://www.itasel.org" target="_blank" rel="noopener noreferrer">ITASEL</a></div>
   </footer>
 
   <script>
-    // ── Cijene ──────────────────────────────────────
-    const BASE_RATE_30S = 0.53; // KM po jednom emitiranju 30-sekundnog spota
-    const MIN_PRICE     = 300;  // KM minimalna cijena kampanje
+    const MIN_PRICE_MJ = 1200;
+    const MAX_PRICE_MJ = 2000;
 
-    function calcPrice(trajanje, ponavljanja, dani) {
-      // Faktor trajanja (normaliziran na 30 sek)
-      const trajanjeFactor = trajanje / 30;
-      // Cijena po jednom emitiranju
-      const cijenaPo = BASE_RATE_30S * trajanjeFactor;
-      // Ukupno emitiranja
+    function calcPrice(trajanje, ponavljanja, months) {
+      const dani = months * 30;
+
+      // Monthly price depends on spot duration and daily repetitions
+      const traj_n = (trajanje    - 8)   / (15   - 8);
+      const pon_n  = (ponavljanja - 300)  / (1200 - 300);
+      const score  = (traj_n + pon_n) / 2;
+
+      const cijenaMjesecno   = MIN_PRICE_MJ + score * (MAX_PRICE_MJ - MIN_PRICE_MJ);
+      const cijena           = cijenaMjesecno * months;
       const ukupnoEmitiranja = ponavljanja * dani;
-      // Ukupno sekundi emitiranja
-      const ukupnoSekundi = ukupnoEmitiranja * trajanje;
-      // Bruto cijena
-      let cijena = cijenaPo * ukupnoEmitiranja;
+      const ukupnoSekundi    = ukupnoEmitiranja * trajanje;
+      const cijenaPo         = cijena / ukupnoEmitiranja;
 
-      // Popust za dužinu kampanje
-      let popust = 0;
-      if (dani >= 28) popust = 0.20;
-      else if (dani >= 14) popust = 0.10;
-
-      cijena = cijena * (1 - popust);
-
-      // Minimalna cijena
-      const jeMinimumo = cijena < MIN_PRICE;
-      if (jeMinimumo) cijena = MIN_PRICE;
-
-      return { cijena, cijenaPo, ukupnoEmitiranja, ukupnoSekundi, popust, jeMinimumo };
+      return { cijena, cijenaMjesecno, cijenaPo, ukupnoEmitiranja, ukupnoSekundi, dani };
     }
 
     function fmt(n) {
@@ -701,74 +728,84 @@
     function getValue(id, min, max, source) {
       const slider = document.getElementById(id);
       const number = document.getElementById(id + 'Input');
-      let value = Number.NaN;
 
-      if (source === 'range' && slider) {
-        value = parseInt(slider.value, 10);
-      } else if (source === 'input' && number) {
-        value = parseInt(number.value, 10);
-      } else if (slider && slider.value !== '') {
-        value = parseInt(slider.value, 10);
-      } else if (number && number.value !== '') {
-        value = parseInt(number.value, 10);
+      if (source === 'input' && number) {
+        const raw = number.value;
+        // If the field is empty, the user is mid-edit — don't overwrite the input
+        if (raw === '') {
+          const val = clamp(parseInt(slider ? slider.value : String(min), 10) || min, min, max);
+          if (slider) slider.value = val;
+          return val;
+        }
+        const parsed = parseInt(raw, 10);
+        if (Number.isNaN(parsed)) {
+          const val = clamp(parseInt(slider ? slider.value : String(min), 10) || min, min, max);
+          if (slider) slider.value = val;
+          return val;
+        }
+        const clamped = clamp(parsed, min, max);
+        if (slider) slider.value = clamped;
+        // Never write back while user is typing — normalizeInput on blur handles it
+        return clamped;
       }
 
-      value = clamp(Math.round(value), min, max);
+      // range source or initial call
+      let value = slider ? parseInt(slider.value, 10) : min;
+      if (Number.isNaN(value)) value = min;
+      value = clamp(value, min, max);
       if (slider) slider.value = value;
       if (number) number.value = value;
       return value;
     }
 
-    function updateCalc(source) {
-      const trajanje    = getValue('trajanje', 1, 60, source);
-      const ponavljanja = getValue('ponavljanja', 1, 1000, source);
-      const dani        = getValue('dani', 1, 90, source);
+    function normalizeInput(id, min, max) {
+      const number = document.getElementById(id + 'Input');
+      const slider = document.getElementById(id);
+      if (!number) return;
+      const parsed = parseInt(number.value, 10);
+      const val = Number.isNaN(parsed)
+        ? (slider ? (parseInt(slider.value, 10) || min) : min)
+        : clamp(parsed, min, max);
+      number.value = val;
+      if (slider) slider.value = val;
+      updateCalc('range');
+    }
 
-      // Update value displays
+    function updateCalc(source) {
+      const trajanje    = getValue('trajanje',    8,    15,   source);
+      const ponavljanja = getValue('ponavljanja', 300,  1200, source);
+      const months      = getValue('dani',        1,    12,   source);
+
       document.getElementById('val-trajanje').innerHTML    = trajanje + '<span class="slider-unit">sek</span>';
       document.getElementById('val-ponavljanja').innerHTML = ponavljanja + '<span class="slider-unit">x/dan</span>';
-      document.getElementById('val-dani').innerHTML        = dani + '<span class="slider-unit">' + (dani === 1 ? 'dan' : 'dana') + '</span>';
+      document.getElementById('val-dani').innerHTML        = months + '<span class="slider-unit">mj.</span>';
 
-      // Update slider fill colour
-      updateSliderFill('trajanje', 1, 60);
-      updateSliderFill('ponavljanja', 1, 1000);
-      updateSliderFill('dani', 1, 90);
+      updateSliderFill('trajanje',    8,    15);
+      updateSliderFill('ponavljanja', 300,  1200);
+      updateSliderFill('dani',        1,    12);
 
-      // Calculate
-      const r = calcPrice(trajanje, ponavljanja, dani);
+      const r = calcPrice(trajanje, ponavljanja, months);
 
-      // Price display with pop animation
       const priceEl = document.getElementById('result-price');
       priceEl.classList.remove('pop');
       void priceEl.offsetWidth;
       priceEl.classList.add('pop');
       document.getElementById('price-num').textContent = fmt(r.cijena);
 
-      // Minimum badge
-      const badge = document.getElementById('min-badge');
-      if (r.jeMinimumo) {
-        badge.classList.add('active');
-        badge.innerHTML = '&#9888; Primijenjena minimalna cijena: <strong>300 KM</strong>';
-      } else {
-        badge.classList.remove('active');
-        badge.innerHTML = '&#9989; Cijena iznad minimuma (300 KM)';
-      }
-
-      // Breakdown
       document.getElementById('bd-emitiranja').textContent = fmtInt(r.ukupnoEmitiranja) + 'x';
-      document.getElementById('bd-sekundi').textContent    = fmtInt(r.ukupnoSekundi) + ' sek';
+      document.getElementById('bd-mjesecno').textContent   = fmt(r.cijenaMjesecno) + ' KM';
       document.getElementById('bd-cijenaPo').textContent   = fmt(r.cijenaPo) + ' KM';
 
-      // Summary
       document.getElementById('sum-trajanje').textContent    = trajanje + ' sekundi';
-      document.getElementById('sum-ponavljanja').textContent = ponavljanja + (ponavljanja === 1 ? ' put' : ' puta');
-      document.getElementById('sum-dani').textContent        = dani + (dani === 1 ? ' dan' : ' dana');
-      document.getElementById('sum-popust').textContent      = r.popust > 0 ? '-' + (r.popust * 100).toFixed(0) + '%' : 'Bez popusta';
+      document.getElementById('sum-ponavljanja').textContent = ponavljanja + ' puta';
 
-      // Quick pick active states
-      updateQpickActive('trajanje', trajanje);
+      const mjLabel = months === 1 ? ' mjesec' : months < 5 ? ' mjeseca' : ' mjeseci';
+      document.getElementById('sum-dani').textContent    = months + mjLabel;
+      document.getElementById('sum-mjesecno').textContent = fmt(r.cijenaMjesecno) + ' KM';
+
+      updateQpickActive('trajanje',    trajanje);
       updateQpickActive('ponavljanja', ponavljanja);
-      updateQpickActive('dani', dani);
+      updateQpickActive('dani',        months);
     }
 
     function updateSliderFill(id, min, max) {
@@ -781,7 +818,6 @@
       const container = document.getElementById('qpicks-' + type);
       if (!container) return;
       container.querySelectorAll('.qpick').forEach(btn => {
-        // Read value from onclick attribute
         const match = btn.getAttribute('onclick').match(/setVal\('.*?',(\d+)\)/);
         if (match && parseInt(match[1]) === val) {
           btn.classList.add('active');
