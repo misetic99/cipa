@@ -9,7 +9,7 @@ Statička web stranica za **SB Digital Advertising**, agenciju za digitalno ogla
 | `main.html` | Početna stranica (hero, o nama, usluge, kontakt forma, mapa) |
 | `o-nama.html` | O nama — misija, vrijednosti, tim |
 | `usluge.html` | Pregled usluga (social media, Google Ads, web dizajn, brendiranje) |
-| `kalkulator.html` | Interaktivni kalkulator cijena oglašavanja |
+| `kalkulator.html` | Interaktivni kalkulator cijena oglašavanja — **isključen** iz navigacije i sitemap-a (`noindex`), cijena se sada traži putem "Zatražite ponudu". Datoteka je zadržana za eventualno ponovno uključivanje. |
 | `kontakt.html` | Kontakt forma + mapa lokacije |
 | `privatnost.html` | Politika privatnosti (GDPR) |
 | `404.html` | Stranica za nepostojeće URL-ove |
@@ -18,7 +18,7 @@ Statička web stranica za **SB Digital Advertising**, agenciju za digitalno ogla
 
 - Čisti HTML, CSS, JavaScript — bez frameworka ili builda
 - Formspree za slanje kontakt forme
-- OpenStreetMap za prikaz lokacije
+- Google Maps (embed) za prikaz lokacije
 - Responzivan dizajn (mobile-first)
 
 ## Zaštita
