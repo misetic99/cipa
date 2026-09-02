@@ -1,0 +1,10 @@
+.git
+.github
+.gitignore
+.claude
+README.md
+Dockerfile
+docker-compose.yml
+.dockerignore
+output/
+tmp/

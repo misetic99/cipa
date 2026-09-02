@@ -1,0 +1,7 @@
+# Datoteke koje se izvrsavaju/citaju u Linux containeru moraju ostati LF,
+# inace ih core.autocrlf na Windowsu pretvori u CRLF pri checkoutu.
+Dockerfile            text eol=lf
+.dockerignore         text eol=lf
+*.conf                text eol=lf
+*.yml                 text eol=lf
+docker-compose.yml    text eol=lf

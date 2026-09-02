@@ -1,0 +1,7 @@
+# Generirani izlazi (PDF exporti i sl.)
+output/
+tmp/
+
+# OS / editor
+.DS_Store
+Thumbs.db

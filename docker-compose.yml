@@ -1,0 +1,12 @@
+services:
+  web:
+    build:
+      context: .
+    image: ghcr.io/misetic99/cipa:latest
+    container_name: sb-digital-web
+    ports:
+      # Stranica je sama na hostu -> direktno na 80.
+      - "80:80"
+      # Ako ispred dode reverse proxy (Traefik/Caddy/nginx na hostu),
+      # zamijeni gornju liniju s:  - "8080:80"
+    restart: unless-stopped
